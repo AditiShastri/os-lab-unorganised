@@ -1,0 +1,26 @@
+#include <stdio.h>
+//#include <file.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
+#define SIZE 8192
+int main(int argc, char* argv[])
+{
+    //cp
+    int fd1=open(argv[1], O_RDONLY);
+    int fd2=open(argv[2],O_WRONLY | O_CREAT, 0644);
+
+    ssize_t ret_in,ret_out;
+    char buf[SIZE];
+
+    while((ret_in=read(fd1,&buf,SIZE))>0)
+    {
+     ret_out=write(fd2,&buf,(ssize_t)ret_in);   
+    }
+    close(fd1);
+    close(fd2);
+
+
+
+}
