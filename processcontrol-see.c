@@ -5,7 +5,7 @@
 int main(int argc,char* argv[1])
 {
     pid_t pid=fork();
-    int ret_val;
+    int status;
     if (pid==-1)
     {
         perror("fork error");
@@ -18,8 +18,8 @@ int main(int argc,char* argv[1])
     else
     {
         printf("We are in parent process now.\nParent pid:\t%d\n",getpid());
-        wait(&ret_val);
-        if((WIFEXITED(ret_val))==0)
+        wait(&status);
+        if((WIFEXITED(status))==0)
         {
             printf("terminated abnormally\n");
         }
